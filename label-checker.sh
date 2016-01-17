@@ -1,3 +1,3 @@
 #!/bin/sh
-echo Hello Label Checker!
+echo Hello Label Checker again!
 
