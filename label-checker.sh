@@ -1,5 +1,5 @@
 #!/bin/sh
 
-git log --min-parents=2 --oneline master | python label-checker.py
+git log --min-parents=2 --oneline origin/master | python label-checker.py
 
 
