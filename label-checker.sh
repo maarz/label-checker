@@ -1,3 +1,5 @@
 #!/bin/sh
-echo Hello Label Checker again!
+
+git log --min-parents=2 --oneline master | python label-checker.py
+
 
