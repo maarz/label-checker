@@ -3,7 +3,9 @@ import re
 import urllib2
 import json
 
-
+not_reviewed = []
+undetermined = []
+reviewed = []
 
 pattern = re.compile(r".*#([0-9]+)")
 for line in fileinput.input():
@@ -20,9 +22,23 @@ for line in fileinput.input():
          review_count = review_count + 1
 
     if review_count < 2:
-      print "PR merged without review: %s" % line
+      not_reviewed.append(line)
     else:
-      print "Reviewed: %s" % line
+      reviewed.append(line)
   else:
-    print "No match: %s" % line
+    undetermined.append(line)
+
+if len(not_reviewed) != 0:
+  print "Not reviewed pulls:"
+  for line in not_reviewed:
+    print " %s" % line
+else:
+  print "No unreviewed pull found"
+
+if len(undetermined) != 0:
+  print "Undetermined merges:"
+  for line in undetermined:
+    print " %s" + line
+else:
+  print "No undetermined pull found"
 
